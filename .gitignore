@@ -1,0 +1,11 @@
+/ServerReceiver/nbproject/private/*
+/ServerReceiver/nbproject/private
+/ServerReceiver/build/*
+/ServerReceiver/build
+/ServerReceiver/dist
+/ServerReceiverClient/nbproject/private/*
+/ServerReceiverClient/nbproject/private
+/ServerReceiverClient/build/*
+/ServerReceiverClient/build
+/ServerReceiverClient/dist
+*.class
