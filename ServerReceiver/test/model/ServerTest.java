@@ -34,7 +34,7 @@ public class ServerTest {
     }
 
     /**
-     * Test of ReceiveConnection method, of class Server.
+     * Test of receiveConnection method, of class Server.
      */
     @Test
     public void testReceiveConnectionUseQueue() {
@@ -42,16 +42,16 @@ public class ServerTest {
         Socket pSocket = null;
         Server instance = new Server(true);
         for(int i = 0; i < 100; ++i) {
-            instance.ReceiveConnection(pSocket);
+            instance.receiveConnection(pSocket);
         }
         try { Thread.sleep(100); } catch(Exception ex) { }
         for(int i = 0; i < 100; ++i) {
-            instance.ReceiveConnection(pSocket);
+            instance.receiveConnection(pSocket);
         }
     }
     
     /**
-     * Test of ReceiveConnection method, of class Server.
+     * Test of receiveConnection method, of class Server.
      */
     @Test
     public void testReceiveConnectionNotUseQueue() {
@@ -60,11 +60,11 @@ public class ServerTest {
         Server instance = new Server(false);
 
         for(int i = 0; i < 100; ++i) {
-            instance.ReceiveConnection(pSocket);
+            instance.receiveConnection(pSocket);
         }
         try { Thread.sleep(100); } catch(Exception ex) { }
         for(int i = 0; i < 100; ++i) {
-            instance.ReceiveConnection(pSocket);
+            instance.receiveConnection(pSocket);
         }
     }
 }

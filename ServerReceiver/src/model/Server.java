@@ -48,7 +48,7 @@ public class Server {
         } catch(Exception ex) {
             Log.severe(Errors.INITIALIZE_QUEUE,
                     "queue failed to initialize, exiting", ex);
-            System.exit(-1);
+            throw new RuntimeException("Failed to initialize queue");
         }
     }
 
@@ -67,7 +67,7 @@ public class Server {
         } catch (Exception ex) {
             Log.warning(Errors.CREATE_THREAD_FAILED,
                     "threadppol failed to initialize, exiting",ex);
-            System.exit(-1);
+            throw new RuntimeException("Failed to initialize pool");
         }
         Log.write("pool initialized");
     }
@@ -76,9 +76,10 @@ public class Server {
      * Start the socket port listening
      */
     private void startListening() {
-        SocketListener tSocketListener = new SocketListener(
-                mConfig.getProperties(), mServerSocket, this);
-        Thread tThread = new Thread(tSocketListener);
+        Thread tThread = new Thread(
+                            new SocketListener(mConfig.getProperties(),
+                                               mServerSocket, this)
+                                              );
         tThread.start();
         Log.info("port opened at "+ mConfig.getPort() + ". Server ready");
     }
@@ -87,7 +88,7 @@ public class Server {
      * 
      * @param pSocket
      */
-    public void ReceiveConnection(Socket pSocket) {
+    public void receiveConnection(Socket pSocket) {
         final Socket tSocket = pSocket;
         mExecutorSocketReading.execute(new Runnable() {
             public void run() {

@@ -3,8 +3,8 @@ package model.impl;
 import model.Worker;
 
 /**
- * The point of this class is the function Process.
- * Process will receive the message sent from client.
+ * The point of this class is the function process.
+ * process will receive the message sent from client.
  * @author riza
  */
 public class UserWorker extends Worker {
@@ -20,7 +20,7 @@ public class UserWorker extends Worker {
      * surely your application is more than a simple hello world, hehe
      */
     @Override
-    public String Process(String pMessage) {
+    public String process(String pMessage) {
         return "Hello World!";
     }
 

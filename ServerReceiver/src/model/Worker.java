@@ -13,8 +13,8 @@ public abstract class Worker implements Runnable {
     private static Server mServerParrent;
     private QueueElement mQueueElement;
 
-    public QueueElement GetQueueElement() { return mQueueElement; }
-    public void SetQueueElement(QueueElement pQueueElement) {
+    public QueueElement getQueueElement() { return mQueueElement; }
+    public void setQueueElement(QueueElement pQueueElement) {
         mQueueElement = pQueueElement;
     }
 
@@ -43,7 +43,7 @@ public abstract class Worker implements Runnable {
      * @param pQueueElement
      * @return the string of the message
      */
-    public static String GetMessage(QueueElement pQueueElement) {
+    public static String getMessage(QueueElement pQueueElement) {
         try {
             Socket tSocket = pQueueElement.getSocket();
             byte[] tMessages = SocketReader.readSocket(tSocket);
@@ -62,7 +62,7 @@ public abstract class Worker implements Runnable {
         mQueueElement = null;
     }
     
-    abstract public String Process(String pMessage);
+    abstract public String process(String pMessage);
 
     public void run() {
         while(true){
@@ -70,9 +70,9 @@ public abstract class Worker implements Runnable {
             String tMessageString  = null;
             try {
                 tQueueElement = getServerParent().takeRequestQueue(this);
-                SetQueueElement(tQueueElement);
+                setQueueElement(tQueueElement);
                 tMessageString = tQueueElement.getString();
-                String tMessageResponse = Process(tMessageString);
+                String tMessageResponse = process(tMessageString);
                 if(tMessageResponse != null)
                 {
                     reply(tQueueElement.getSocket(), tMessageResponse);

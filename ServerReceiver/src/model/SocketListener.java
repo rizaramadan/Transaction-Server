@@ -31,7 +31,7 @@ class SocketListener implements Runnable {
                 tClientSocket.setKeepAlive(true);
                 tClientSocket.setReuseAddress(true);
                 Log.write("client trying to connect");
-                mServerParent.ReceiveConnection(tClientSocket);
+                mServerParent.receiveConnection(tClientSocket);
                 Log.write("put request to queue");
             }
         } catch(Exception ex) {

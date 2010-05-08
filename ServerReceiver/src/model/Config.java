@@ -78,13 +78,19 @@ public class Config {
         mProperties.setProperty(Config.QueueFairness,"true");
         mProperties.setProperty(Config.ThreadNumber,"10");
         mProperties.setProperty(Config.Port,"23456");
+        FileReader tFileReader = null;
         try{
-            mProperties.load(new FileReader("config/properties.config"));
+            tFileReader = new FileReader("config/properties.config");
+            mProperties.load(tFileReader );
             Log.write("configuration loaded");
             return true;
         } catch(Exception ex) {
             Log.info("cannot load file properties, default used");
             return false;
+        } finally {
+            try {
+                tFileReader.close();
+            } catch(Exception ex) { }
         }
     }
 
